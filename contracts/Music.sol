@@ -24,10 +24,9 @@ contract Music{
         uint aId;
         uint sId;
         uint cost;
-        uint genre;
         uint releaseDate;
         string songName;
-        string songhash;
+        string ipfshash;
     }
 
     enum ROLE{UNREGISTERED,ARTIST,USER}      //keep track of type of user
@@ -36,7 +35,7 @@ contract Music{
     mapping(address => uint)artistId;
     mapping (address => User) userId;
     mapping (uint => Song) idToSong;
-    mapping(string => Song) hashToSong;     //to keep track of uploads
+   
 
     modifier onlyUser{
         require(userId[msg.sender].uId != 0,"Not a user");
@@ -60,12 +59,9 @@ contract Music{
         return ((artistId[msg.sender]!=0) ? ROLE.ARTIST : (userId[msg.sender].uId != 0) ? ROLE.USER : ROLE.UNREGISTERED);
     }
 
-    function checkSongisUnique(string calldata _hash) external view returns(uint){
-        return hashToSong[_hash].sId;
-    }
+    
 
     function userRegister(string memory name) public{
-        require(userId[msg.sender].uId == 0,"Already registered!");
         lastUser+=1;
         User memory newUser = User(lastUser,name);
        userId[msg.sender] = newUser;
@@ -86,15 +82,14 @@ contract Music{
         idToArtist[lastArtist] = newArtist;
     }
 
-    function artistUploadSong(uint _cost,string calldata _name,uint _genre,string calldata songHash,string calldata ipfshash) external onlyArtist{
-        require(hashToSong[songHash].sId == 0,"cant upload duplicate");
+    function artistUploadSong(uint _cost,string calldata _name,string calldata ipfshash) external onlyArtist{
         lastSong++;
 
         Artist storage artistInstance = idToArtist[artistId[msg.sender]];
         artistInstance.songsUploaded.push(lastSong);
 
-        idToSong[lastSong] = Song(artistInstance.aId,lastSong,_cost,_genre,block.timestamp,_name,ipfshash);
-        hashToSong[songHash] = idToSong[lastSong];
+        idToSong[lastSong] = Song(artistInstance.aId,lastSong,_cost,block.timestamp,_name,ipfshash);
+       
     }
     
     //return use profile
@@ -108,14 +103,14 @@ contract Music{
     }
 
     //return song details
-    function songDetails(uint songId) external view returns(uint _artistId,uint id,string memory name,uint cost,uint releaseDate,uint genre){
+    function songDetails(uint songId) external view returns(uint _artistId,uint id,string memory name,uint cost,string memory ipfshash,uint releaseDate){
         Song storage song = idToSong[songId];
         id = song.sId;
         _artistId = song.aId;
         name = song.songName;
         cost = song.cost;
-        genre = song.genre;
         releaseDate = song.releaseDate;
+        ipfshash = song.ipfshash;
 
     }
 
