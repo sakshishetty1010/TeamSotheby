@@ -1,6 +1,6 @@
 # TeamSotheby
 ## HackNITP 4.0 
-<a href="https://www.canva.com/design/DAE4JzH4yUI/IyPVmF-UTsVgH6QDjQJM7Q/view?utm_content=DAE4JzH4yUI&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink" target="_blank">TEAM SOTHEBY PPT</a>
+<a href="https://www.canva.com/design/DAE4JzH4yUI/IyPVmF-UTsVgH6QDjQJM7Q/view?utm_content=DAE4JzH4yUI&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton" target="_blank">CLICK TO VIEW TEAM SOTHEBY PPT</a>
 
 ## Technologies used : 
 #### <ins>React</ins> is a JavaScript library for building user interfaces.React is used to build single-page applications.React allows us to create reusable UI components.
