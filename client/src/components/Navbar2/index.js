@@ -52,7 +52,7 @@ const Navbar2 = ({toggle}) => {
     const displayRole = ()=>{
         if(role === '0'){
             return (<div>
-                <Link to="/registerUser">Register as User</Link>
+                <Link to="/registerUser" >Register as User</Link>
                 or
                 <Link to="/registerArtist">Register as Artist</Link>
             </div>)
@@ -83,7 +83,7 @@ const Navbar2 = ({toggle}) => {
                         duration={500}
                         spy={true}
                         exact='true'
-                        offset={-80}><Link to="/explore">Discover</Link></NavLinks>
+                        offset={-80}><NavBtnLink to="/explore" >Discover</NavBtnLink></NavLinks>
                     </NavItem>
                   
                 </NavMenu>

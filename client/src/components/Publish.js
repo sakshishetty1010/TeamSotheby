@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import {Form,Input,Dropdown,Button,Message} from 'semantic-ui-react';
+import {Form,Input,Container,Button,Message} from 'semantic-ui-react';
 import {Music,web3} from '../Music';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar2'
 import {create} from 'ipfs-http-client'
 const client = create('https://ipfs.infura.io:5001/api/v0');
 
@@ -56,12 +57,14 @@ let hash
 
   return (
     <>
-        <div>
+        <div style={{background:'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,191,166,1) 35%, rgba(0,212,255,1) 100%)',height:'100vh'}}>
+        <Navbar/>
+        <Container style={{marginTop:"50px",border:'1px solid',padding:'10px',height:'300px',background:'#fff',borderRadius:'10px'}}>
             <h3>Add new music</h3>
 
             <Form onSubmit={onSubmit} error={!!errorMessage}>
                 <Form.Field>
-                    <label>Upload Sognfile</label>
+                    <label>Upload Songfile</label>
                     <input type="file" accept=".mp3" onChange={captureSong}/>
                 </Form.Field>
                 <Form.Field>
@@ -84,6 +87,7 @@ let hash
                 <Message error header="OOPS!" content={errorMessage} />
                 <Button loading={loading}>Publish</Button>
             </Form>
+            </Container>
         </div>
     </>
   )

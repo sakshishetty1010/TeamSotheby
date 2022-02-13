@@ -52,9 +52,9 @@ const Navbar = ({toggle}) => {
     const displayRole = ()=>{
         if(role === '0'){
             return (<div>
-                <Link to="/registerUser">Register as User</Link>
+                <NavBtnLink to="/registerUser" >Register as User</NavBtnLink>
                 or
-                <Link to="/registerArtist">Register as Artist</Link>
+                <NavBtnLink to="/registerArtist">Register as Artist</NavBtnLink>
             </div>)
         }else {
             return(
@@ -66,6 +66,16 @@ const Navbar = ({toggle}) => {
     const toggleHome=() =>{
         scroll.scrollToTop();
     };
+
+    const publish = () =>{
+        if(role === '1'){
+            return(
+                    <NavBtn>
+                    <NavBtnLink to="/publish">Publish</NavBtnLink>
+                </NavBtn>
+            )
+        }
+    }
   return (
     <>
         <Nav>
@@ -97,7 +107,7 @@ const Navbar = ({toggle}) => {
                         duration={500}
                         spy={true}
                         exact='true'
-                        offset={-80}><Link to="/explore">Discover</Link></NavLinks>
+                        offset={-80}><Link style = {{color:'#fff'}}to="/explore">Discover</Link></NavLinks>
                     </NavItem>
                     <NavItem>
                         <NavLinks to="signup"
@@ -105,12 +115,13 @@ const Navbar = ({toggle}) => {
                         duration={500}
                         spy={true}
                         exact='true'
-                        offset={-80}>Sign up</NavLinks>
+                        offset={-80}>Know More</NavLinks>
                     </NavItem>
                 </NavMenu>
                 <NavBtn>
                     <NavBtnLink to="/signin">{displayRole()}</NavBtnLink>
                 </NavBtn>
+                {publish() }
             </NavbarContainer>
         </Nav>
     </>
